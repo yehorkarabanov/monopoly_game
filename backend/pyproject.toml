@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "monopoly-backend"
+version = "0.1.0"
+description = ""
+authors = ["yehor <egor.karabanov@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["standard"], version = "^0.115.7"}
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.37"}
+asyncpg = "^0.30.0"
+alembic = "^1.14.1"
+loguru = "^0.7.3"
+websockets = "^14.2"
+ruff = "^0.9.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
