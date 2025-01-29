@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  backend-api:
+  backend:
     depends_on:
       - redis
       - postgres
@@ -39,7 +39,7 @@ services:
 
   frontend:
     depends_on:
-      - backend-api
+      - backend
     build:
         context: ./frontend
         dockerfile: Dockerfile
@@ -78,7 +78,7 @@ services:
     image: nginx:1.27.3-alpine-slim
     depends_on:
       - frontend
-      - backend-api
+      - backend
       - postgres
       - redis
       - mailhog
@@ -91,11 +91,11 @@ services:
         - FRONTEND_PORT_INTERNAL=${FRONTEND_PORT_INTERNAL}
         - POSTGRES_PORT_INTERNAL=${POSTGRES_PORT_INTERNAL}
         - REDIS_PORT_INTERNAL=${REDIS_PORT_INTERNAL}
-        - MAILHOG_PORT_INTERNAL=${MAILHOG_UI_PORT_INTERNAL}
+        - MAILHOG_UI_PORT_INTERNAL=${MAILHOG_UI_PORT_INTERNAL}
         - DOMAIN=${DOMAIN}
     entrypoint: >
       sh -c "
-        envsubst '$$FRONTEND_PORT_INTERNAL $$BACKEND_PORT_INTERNAL $$MAILHOG_PORT_INTERNAL $$DOMAIN' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf &&
+        envsubst '$$FRONTEND_PORT_INTERNAL $$BACKEND_PORT_INTERNAL $$MAILHOG_UI_PORT_INTERNAL $$DOMAIN' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf &&
         exec nginx -g 'daemon off;'
       "
     ports:
