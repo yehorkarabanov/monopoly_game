@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
 
 from app.settings import settings
-from app.database.models import Base, Action, Group, Tile, Property, Railway, Utility, SpecialTile
+from app.database.models import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -4,6 +4,7 @@ import inflect
 
 p = inflect.engine()
 
+
 class Base(AsyncAttrs, DeclarativeBase):
     __abstract__ = True
 
@@ -14,4 +15,4 @@ class Base(AsyncAttrs, DeclarativeBase):
     id: Mapped[int] = mapped_column(primary_key=True)
 
 
-from .tiles import Action, Group, Tile, Property, Railway, Utility, SpecialTile
+from .tiles import Action, Group, Tile, Property, Railway, Utility, SpecialTile, CardType, SpecialCard

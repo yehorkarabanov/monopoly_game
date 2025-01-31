@@ -28,3 +28,18 @@ async def get_tiles(session: AsyncSession = Depends(db_helper.session_dependency
     tiles = result.scalars().all()
 
     return tiles
+
+
+@router.get("/cards")
+async def get_cards(session: AsyncSession = Depends(db_helper.session_dependency)):
+    stmt = select(SpecialTile).options(
+        joinedload(SpecialTile.action),  # Load the related Action
+    )
+
+    # Execute the query
+    result = await session.execute(stmt)
+
+    # Fetch all special tiles
+    special_tiles = result.scalars().all()
+
+    return special_tiles

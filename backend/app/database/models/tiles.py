@@ -95,3 +95,20 @@ class SpecialTile(Base):
     # Relationships
     tile: Mapped["Tile"] = relationship(back_populates="special_tile")
     action: Mapped["Action"] = relationship(back_populates="special_tiles")
+
+
+# Card Types Table
+class CardType(Base):
+    name: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
+
+    # Relationship with SpecialCards
+    special_cards: Mapped[list["SpecialCard"]] = relationship(back_populates="card_type")
+
+# Special Cards Table
+class SpecialCard(Base):
+    type_id: Mapped[int] = mapped_column(ForeignKey("cardtypes.id"), nullable=False)
+    code_name: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
+    description: Mapped[str] = mapped_column(nullable=False)
+
+    # Relationship with CardType
+    card_type: Mapped["CardType"] = relationship(back_populates="special_cards")
