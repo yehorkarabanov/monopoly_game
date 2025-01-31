@@ -25,7 +25,6 @@ class DatabaseHelper:
             session_factory=self.session_factory, scopefunc=current_task
         )
 
-    @asynccontextmanager
     async def session_dependency(self) -> AsyncSession:
         """
         Provides a session dependency for FastAPI with proper session lifecycle management.

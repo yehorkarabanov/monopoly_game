@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from settings import settings
-
+from  app.tiles.api import router as tiles_router
 app = FastAPI(root_path="/api/")
 app.add_middleware(
     CORSMiddleware,
@@ -10,6 +10,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(tiles_router)
 
 
 @app.get("/")

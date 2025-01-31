@@ -16,6 +16,7 @@ loguru = "^0.7.3"
 websockets = "^14.2"
 ruff = "^0.9.3"
 pydantic-settings = "^2.7.1"
+inflect = "^7.5.0"
 
 
 [build-system]
